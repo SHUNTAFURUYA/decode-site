@@ -1562,3 +1562,34 @@ body.is-locked {
   }
 }
 
+/* バナーの行き先ページ */
+.dc-list {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  max-width: 640px;
+}
+.dc-list li {
+  position: relative;
+  padding: 16px 20px 16px 52px;
+  background: var(--bg-soft);
+  font-weight: 700;
+  line-height: 1.7;
+}
+.dc-list li::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  width: 14px;
+  height: 8px;
+  margin-top: -6px;
+  border-left: 3px solid var(--blue);
+  border-bottom: 3px solid var(--blue);
+  transform: rotate(-45deg);
+}
+.dc-cta {
+  margin-top: 32px;
+}

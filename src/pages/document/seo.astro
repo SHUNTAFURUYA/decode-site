@@ -1,0 +1,67 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+import LeadForm from "../../components/LeadForm.astro";
+
+// SEO記事のバナーの行き先。検索で悩みを調べて来た人向け。答えを先に、すぐ役立つ形で。
+// ※ 初稿。「資料で分かること」は、サービスの考え方から起こした仮の項目。実際の資料の目次に合わせて直す。
+const points = [
+  { t: "キーワードの選び方", b: "見込み客が検索する言葉を、どう選び、何から書くかを決める考え方。" },
+  { t: "記事の作り方と、AIの使いどころ", b: "人が戦略を立て、AIが下書きをつくり、人が確認する。品質を保ちつつ、コストを抑える進め方。" },
+  { t: "1つのキーワードを広げる方法", b: "SEO記事のほか、note・映像・SNS・取材記事へ広げて、見つけてもらう場所を増やす。" },
+];
+const worries = ["記事を出しているのに、PVが伸びない", "何を書けばいいか、分からない", "読まれても、問い合わせにつながらない"];
+---
+
+<Base
+  title="AIオウンドメディア360 資料のお申し込み"
+  description="PVが伸びない、何を書けばいいか分からない。そんなオウンドメディアの悩みに向けた、AIオウンドメディア360の資料をお送りします。"
+>
+  <PageHero
+    en="Document"
+    title="PVが伸びない、を、仕組みで変える。"
+    lead="キーワードの選び方から、記事づくり、効果の確かめまで。AIオウンドメディア360の資料を、お送りします。"
+  />
+
+  <section class="sec">
+    <div class="wrap">
+      <p class="label sec__label fade-up">For you</p>
+      <h2 class="lead-h fade-up">こんなお悩みはありませんか。</h2>
+      <ul class="dc-list fade-up">
+        {worries.map((w) => <li>{w}</li>)}
+      </ul>
+      <p class="dc-cta fade-up"><a class="btn btn--pill" href="#form">資料を申し込む</a></p>
+    </div>
+  </section>
+
+  <section class="sec sec--soft">
+    <div class="wrap">
+      <p class="label sec__label fade-up">Inside</p>
+      <h2 class="lead-h fade-up">資料で、分かること。</h2>
+      <ul class="om-cards">
+        {points.map((p, i) => (
+          <li class="om-card fade-up" style={`--d:${i * 0.08}s`}>
+            <h3>{p.t}</h3>
+            <p>{p.b}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="om-sub fade-up">
+        サービスの概要は<a class="ai-link" href="/service/owned-media-360/">AIオウンドメディア360のページ</a>でもご覧いただけます。
+      </p>
+    </div>
+  </section>
+
+  <section class="sec" id="form">
+    <div class="wrap om-doc">
+      <div class="fade-up">
+        <p class="label sec__label">Request</p>
+        <h2 class="lead-h">資料を、お送りします。</h2>
+        <p class="om-sub">お名前・会社名・メールアドレスをご入力ください。ご入力のメールアドレスへ、資料をお送りします。</p>
+      </div>
+      <div class="fade-up">
+        <LeadForm source="banner-seo" title="資料のお申し込み" button="資料を申し込む" />
+      </div>
+    </div>
+  </section>
+</Base>

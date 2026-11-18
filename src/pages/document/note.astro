@@ -1,0 +1,60 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+import LeadForm from "../../components/LeadForm.astro";
+
+// noteのバナーの行き先。読み物として気軽に読んでいる人向け。急がせず、デコデの考え方から。
+// ※ 初稿。文章は、サービスの考え方から起こした仮。
+const views = [
+  { t: "記事を載せるだけでは、成果は出ない", b: "何のためのメディアか。キーワードは。どう確かめるか。その組み合わせで、はじめて成果が見えてきます。" },
+  { t: "人の戦略と、AIの制作力", b: "方針を決めるのは人。下書きを速くつくるのはAI。最後は人が見て、公開します。" },
+  { t: "1つのキーワードから、広げる", b: "同じキーワードを、記事・note・映像・SNSなど、いろいろな形に。見つけてもらえる場所を増やします。" },
+];
+---
+
+<Base
+  title="AIオウンドメディア360 資料のお申し込み"
+  description="書き続けているのに、届かない。デコデが考える、オウンドメディアの進め方をまとめた資料です。"
+>
+  <PageHero
+    en="Document"
+    title="書き続けているのに、届かない。"
+    lead="そんなときの、ひとつの考え方。デコデが、オウンドメディアをどう考えているか。資料にまとめました。"
+  />
+
+  <section class="sec">
+    <div class="wrap">
+      <p class="label sec__label fade-up">Our view</p>
+      <h2 class="lead-h fade-up">noteを読んでくださって、ありがとうございます。</h2>
+      <p class="om-sub fade-up">
+        デコデは、「AIオウンドメディア360」というサービスで、オウンドメディアの運用をお手伝いしています。どんな考え方で進めているのかを、少しだけご紹介します。
+      </p>
+      <ul class="om-cards">
+        {views.map((p, i) => (
+          <li class="om-card fade-up" style={`--d:${i * 0.08}s`}>
+            <h3>{p.t}</h3>
+            <p>{p.b}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec--soft" id="form">
+    <div class="wrap om-doc">
+      <div class="fade-up">
+        <p class="label sec__label">Document</p>
+        <h2 class="lead-h">もう少し、読んでみたい方へ。</h2>
+        <p class="om-sub">
+          気になったら、資料をお送りします。お名前・会社名・メールアドレスをご入力ください。急ぎではありませんので、お時間のあるときにご覧ください。
+        </p>
+        <p class="om-sub">
+          サービスの概要は<a class="ai-link" href="/service/owned-media-360/">AIオウンドメディア360のページ</a>でも読めます。
+        </p>
+      </div>
+      <div class="fade-up">
+        <LeadForm source="banner-note" title="資料を受け取る" button="資料を受け取る" />
+      </div>
+    </div>
+  </section>
+</Base>
