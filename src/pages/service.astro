@@ -1,27 +1,47 @@
 ---
 import Base from "../layouts/Base.astro";
 import PageHero from "../components/PageHero.astro";
-import { services } from "../data/site";
+import { services, featured } from "../data/site";
 ---
 
-<Base title="事業内容" description="デコデの事業内容。デジタルコンテンツ開発、ツーリズムサポート、WEB広告最適化運用、Z世代マーケティングサポート、レストランマーケティングサポート。">
+<Base title="事業内容" description="デコデの事業内容。AIオウンドメディア360、AI360のほか、デジタルコンテンツ開発、ツーリズムサポート、WEB広告最適化運用、Z世代マーケティングサポート、レストランマーケティングサポート。">
   <PageHero en="Service" title="事業内容" />
+
   <section class="sec">
     <div class="wrap">
-      {services.map((s) => (
-        <article class="svc-row">
-          <div class={`svc-row__fig fade-up ${s.img ? "" : "svc-row__fig--plain"}`}>
-            {s.img && <img src={s.img} alt="" loading="lazy" />}
-          </div>
-          <div class="fade-up" style="--d: 0.08s">
-            <p class="svc-row__no">SECTION {s.no}</p>
-            <h2>{s.title}</h2>
-            <p>{s.body}</p>
-          </div>
-        </article>
-      ))}
+      <p class="label sec__label fade-up">Featured</p>
+      <h2 class="lead-h fade-up">AIで、オウンドメディアを動かす。</h2>
+      <ul class="feat">
+        {featured.map((f, i) => (
+          <li class="fade-up" style={`--d:${i * 0.08}s`}>
+            <a class="feat__card" href={f.href}>
+              <span class="feat__tag">{f.tag}</span>
+              <h3>{f.title}</h3>
+              <p>{f.lead}</p>
+              <span class="feat__more">詳しく見る →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </section>
+
+  <section class="sec sec--soft">
+    <div class="wrap">
+      <p class="label sec__label fade-up">Other Service</p>
+      <h2 class="lead-h fade-up">そのほかの事業</h2>
+      <ul class="svc-mini">
+        {services.map((s, i) => (
+          <li class="fade-up" style={`--d:${(i % 2) * 0.08}s`}>
+            <span class="svc-mini__no">{s.no}</span>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
   <section class="contact">
     <div class="contact__plane" aria-hidden="true"></div>
     <div class="wrap contact__in">

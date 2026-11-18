@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import PageHero from "../components/PageHero.astro";
 import { company } from "../data/site";
+import { formConfig } from "../data/forms";
 ---
 
 <Base title="お問い合わせ" description="デコデへのお問い合わせ。">
@@ -13,9 +14,11 @@ import { company } from "../data/site";
         <a href={`mailto:${company.email}`}>{company.email}</a>
         <strong style="margin-top: 16px">所在地</strong>
         <p>{company.zip}<br />{company.address}</p>
+        <strong style="margin-top: 16px">まず資料から</strong>
+        <p>相談の前に、サービスを知りたい方へ。<a class="ai-link" href="/service/owned-media-360/#document">AIオウンドメディア360の資料</a>をお送りします。</p>
       </div>
-      <!-- 送信先は未定。いまは「メールを作成」で info@ 宛てに開くだけ（サーバーへは送らない） -->
-      <form class="form fade-up" id="contact-form" data-to={company.email} novalidate>
+      <!-- 送り先は src/data/forms.ts の endpoint。空のあいだは「メールを作成」で info@ 宛てに開くだけ（サーバーへは送らない） -->
+      <form class="form fade-up" id="contact-form" data-to={company.email} data-endpoint={formConfig.endpoint} novalidate>
         <label>お名前<span class="req">必須</span>
           <input type="text" name="name" autocomplete="name" required />
         </label>
@@ -37,11 +40,34 @@ import { company } from "../data/site";
   <script>
     const f = document.getElementById("contact-form");
     const msg = document.getElementById("form-msg");
-    f.addEventListener("submit", (e) => {
+    f.addEventListener("submit", async (e) => {
       e.preventDefault();
       const d = new FormData(f);
       if (!d.get("name") || !d.get("email") || !d.get("message")) {
         msg.textContent = "必須の項目を入力してください。";
+        return;
+      }
+      // 送り先（forms.ts の endpoint）が決まっていれば、そこへ送る
+      if (f.dataset.endpoint) {
+        try {
+          const res = await fetch(f.dataset.endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              type: "contact",
+              source: "contact",
+              name: d.get("name"),
+              company: d.get("company") || "",
+              email: d.get("email"),
+              message: d.get("message"),
+            }),
+          });
+          if (!res.ok) throw new Error(String(res.status));
+          f.reset();
+          msg.textContent = "お問い合わせを送信しました。ありがとうございます。";
+        } catch {
+          msg.textContent = "送信できませんでした。時間をおいて、もう一度お試しください。";
+        }
         return;
       }
       const body = `お名前：${d.get("name")}\n会社名：${d.get("company") || ""}\nメール：${d.get("email")}\n\n${d.get("message")}`;

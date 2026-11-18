@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import { services, cases, company } from "../data/site";
+import { services, cases, company, featured } from "../data/site";
 const topServices = services;
 ---
 
@@ -41,6 +41,19 @@ const topServices = services;
     <div class="wrap">
       <p class="label fade-up">Service</p>
       <h2 class="h2 fade-up">事業内容</h2>
+      <ul class="feat">
+        {featured.map((f, i) => (
+          <li class="fade-up" style={`--d:${i * 0.08}s`}>
+            <a class="feat__card" href={f.href}>
+              <span class="feat__tag">{f.tag}</span>
+              <h3>{f.title}</h3>
+              <p>{f.lead}</p>
+              <span class="feat__more">詳しく見る →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="feat__sub fade-up">そのほかの事業</p>
       <ul class="svc">
         {topServices.map((s, i) => (
           <li class="svc__item fade-up" style={`--d: ${(i % 2) * 0.08}s`}>

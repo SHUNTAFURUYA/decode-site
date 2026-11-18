@@ -102,3 +102,19 @@ export const cases = [
     tone: 3,
   },
 ];
+
+// 事業内容の最上段に大きく出す、いまの主力サービス（トップ・事業内容ページで共通）
+export const featured = [
+  {
+    tag: "Owned Media",
+    title: "AIオウンドメディア360",
+    lead: "1つのキーワードから、記事・note・映像・SNSまで広げる。人の戦略とAIの制作力で、読まれるオウンドメディアをつくります。",
+    href: "/service/owned-media-360/",
+  },
+  {
+    tag: "AI360",
+    title: "AI360",
+    lead: "いまある自社の記事を、AIで動画・SNS投稿・noteに広げる。つくり直す手間を減らし、記事の届く場所を増やします。",
+    href: "/service/ai360/",
+  },
+];

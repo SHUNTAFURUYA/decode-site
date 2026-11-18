@@ -1593,3 +1593,91 @@ body.is-locked {
 .dc-cta {
   margin-top: 32px;
 }
+
+/* 事業内容：主力サービスのカードと、小さめの既存事業 */
+.feat {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.feat__card {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  height: 100%;
+  padding: clamp(24px, 3vw, 40px);
+  background: #fff;
+  border-top: 3px solid var(--blue);
+  box-shadow: 0 10px 30px rgba(21, 38, 50, 0.08);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.feat__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(21, 38, 50, 0.12);
+}
+.feat__tag {
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--sky);
+}
+.feat__card h3 {
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1.5;
+}
+.feat__card p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink-sub);
+}
+.feat__more {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--blue);
+}
+.feat__sub {
+  margin: 48px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-sub);
+}
+.svc-mini {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.svc-mini li {
+  padding: 24px 24px 28px;
+  background: #fff;
+  border-top: 3px solid var(--pale);
+}
+.svc-mini__no {
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--sky);
+}
+.svc-mini h3 {
+  margin-top: 4px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.svc-mini p {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--ink-sub);
+}
+@media (max-width: 860px) {
+  .feat,
+  .svc-mini {
+    grid-template-columns: 1fr;
+  }
+}
