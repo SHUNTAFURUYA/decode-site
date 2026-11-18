@@ -1,0 +1,38 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+import { cases } from "../../data/site";
+
+export function getStaticPaths() {
+  return cases.map((c, i) => ({
+    params: { slug: c.slug },
+    props: { item: c, prev: cases[i - 1], next: cases[i + 1] },
+  }));
+}
+const { item, prev, next } = Astro.props;
+---
+
+<Base title={item.title} description={item.lead}>
+  <PageHero en="Case Study" title={item.heading} />
+  <section class="sec">
+    <div class="wrap">
+      <p class="article__date fade-up">{item.date}</p>
+      <p class="article__cat fade-up">{item.category}</p>
+      <div class={`article__fig card__img--${item.tone} fade-up`} aria-hidden="true"></div>
+      <div class="prose prose--wide">
+        <h2 class="lead-h fade-up">{item.lead}</h2>
+        {item.body.map((p) => <p class="fade-up">{p}</p>)}
+      </div>
+      <div class="scope fade-up" style="max-width: 52em">
+        <h3>対応範囲</h3>
+        <ul>{item.scope.map((s) => <li>{s}</li>)}</ul>
+      </div>
+      <div class="tags fade-up">{item.tags.map((t) => <span>{t}</span>)}</div>
+      <nav class="pager" aria-label="前後の事例">
+        {prev ? <a href={`/case/${prev.slug}/`}>← 前のページへ</a> : <span></span>}
+        <a href="/case/">一覧へ</a>
+        {next ? <a href={`/case/${next.slug}/`}>次のページへ →</a> : <span></span>}
+      </nav>
+    </div>
+  </section>
+</Base>

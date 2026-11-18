@@ -1,0 +1,43 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import { company } from "../data/site";
+---
+
+<Base title="会社概要" description="デジタルコミュニケーションデザイン株式会社の会社概要。">
+  <PageHero en="Company" title="会社概要" />
+  <section class="sec">
+    <div class="wrap split">
+      <div>
+        <p class="label sec__label fade-up">Greeting</p>
+        <h2 class="h2 fade-up">代表あいさつ</h2>
+      </div>
+      <div class="greet">
+        <p class="greet__lead fade-up">デジタル社会のコミュニケーションをデザインし新しい価値を創造する。</p>
+        <p class="fade-up">デジタルコミュニケーションデザイン株式会社は、ただの広告や制作だけを提供するだけの会社ではありません。我々は、クライアントとともに新しい価値を創り出すパートナーとして、これからの時代のニーズを先取りします。</p>
+        <p class="fade-up">今、我々は様々な分野でのマーケティングに力を入れています。その背景には、各業界の課題を深く理解し、それぞれのニーズに合わせた戦略を提供するという強い信念があります。この道を選んだ皆様と共に、新しい価値を創出し、次の時代のスタンダードを築いていく。そんな挑戦的な旅を、私たちは始めています。皆様の成功のため、最前線でサポートし続けます。</p>
+        <p class="greet__sign fade-up"><small>{company.repTitle}</small>{company.repName}</p>
+      </div>
+    </div>
+  </section>
+  <section class="sec sec--soft">
+    <div class="wrap split">
+      <div>
+        <p class="label sec__label fade-up">Profile</p>
+        <h2 class="h2 fade-up">会社概要</h2>
+      </div>
+      <dl class="table fade-up">
+        <div><dt>商号</dt><dd>{company.nameJa}</dd></div>
+        <div><dt>資本金</dt><dd>{company.capital}</dd></div>
+        <div><dt>代表者</dt><dd>{company.rep}</dd></div>
+        <div><dt>設立</dt><dd>{company.founded}</dd></div>
+        <div><dt>所在地</dt><dd>{company.zip}<br />{company.address}</dd></div>
+        <div><dt>連絡先</dt><dd>{company.email}</dd></div>
+        <div>
+          <dt>事業内容</dt>
+          <dd><ul>{company.business.map((b) => <li>{b}</li>)}</ul></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+</Base>

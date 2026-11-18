@@ -1,0 +1,33 @@
+---
+import { nav } from "../data/site";
+const { path } = Astro.props;
+const current = (href: string) => path.startsWith(href);
+---
+
+<header class="head" id="head">
+  <a class="head__logo" href="/" aria-label="デコデ トップへ">
+    <img
+      src="/img/decode-name.png"
+      alt="デジタルコミュニケーションデザイン株式会社"
+      width="240"
+      height="14"
+    />
+  </a>
+  <nav class="head__nav" aria-label="メニュー">
+    {nav.map((n) => (
+      <a href={n.href} aria-current={current(n.href) ? "page" : undefined}>{n.label}</a>
+    ))}
+  </nav>
+  <a class="btn btn--pill head__cta" href="/contact/">お問い合わせ</a>
+  <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false" aria-controls="drawer">
+    <span></span><span></span>
+  </button>
+</header>
+<div class="drawer" id="drawer" hidden>
+  <nav aria-label="メニュー（スマホ）">
+    {nav.map((n) => (
+      <a href={n.href}><span class="drawer__en">{n.en}</span>{n.label}</a>
+    ))}
+    <a href="/contact/"><span class="drawer__en">Contact</span>お問い合わせ</a>
+  </nav>
+</div>

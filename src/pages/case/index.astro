@@ -1,0 +1,26 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+import { cases } from "../../data/site";
+---
+
+<Base title="事例・コラム" description="デコデの事例・コラム。">
+  <PageHero en="Case Study" title="事例・コラム" />
+  <section class="sec">
+    <div class="wrap">
+      <ul class="cases cases--page">
+        {cases.map((c, i) => (
+          <li class="fade-up" style={`--d: ${i * 0.08}s`}>
+            <a class="card" href={`/case/${c.slug}/`}>
+              <div class={`card__img card__img--${c.tone}`}><span>写真（仮）</span></div>
+              <p class="card__tag">{c.tags[0]}</p>
+              <h3>{c.title}</h3>
+              <p class="card__lead">{c.lead}</p>
+              <span class="card__more">詳しく見る →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>

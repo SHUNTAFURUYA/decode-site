@@ -1,0 +1,33 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import { services } from "../data/site";
+---
+
+<Base title="事業内容" description="デコデの事業内容。デジタルコンテンツ開発、ツーリズムサポート、WEB広告最適化運用、Z世代マーケティングサポート、レストランマーケティングサポート。">
+  <PageHero en="Service" title="事業内容" />
+  <section class="sec">
+    <div class="wrap">
+      {services.map((s) => (
+        <article class="svc-row">
+          <div class={`svc-row__fig fade-up ${s.img ? "" : "svc-row__fig--plain"}`}>
+            {s.img && <img src={s.img} alt="" loading="lazy" />}
+          </div>
+          <div class="fade-up" style="--d: 0.08s">
+            <p class="svc-row__no">SECTION {s.no}</p>
+            <h2>{s.title}</h2>
+            <p>{s.body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="contact">
+    <div class="contact__plane" aria-hidden="true"></div>
+    <div class="wrap contact__in">
+      <p class="label label--light fade-up">Contact</p>
+      <h2 class="contact__title fade-up">まずはお気軽に、ご相談ください。</h2>
+      <a class="btn btn--white fade-up" href="/contact/">お問い合わせ</a>
+    </div>
+  </section>
+</Base>

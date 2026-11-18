@@ -1,0 +1,16 @@
+---
+const { en, title, lead } = Astro.props;
+---
+
+<section class="phero">
+  <div class="phero__art" aria-hidden="true">
+    <div class="plane plane--a" data-par="-0.08"></div>
+    <div class="plane plane--b" data-par="0.05"></div>
+    <div class="plane plane--c" data-par="0.1"></div>
+  </div>
+  <div class="wrap phero__in">
+    <p class="label fade-up">{en}</p>
+    <h1 class="phero__title fade-up" style="--d: 0.08s">{title}</h1>
+    {lead && <p class="phero__lead fade-up" style="--d: 0.16s">{lead}</p>}
+  </div>
+</section>

@@ -1,0 +1,20 @@
+---
+import { nav, company } from "../data/site";
+---
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__brand">
+      <img src="/img/decode-name.png" alt={company.nameJa} width="200" height="12" />
+      <p class="foot__addr">
+        {company.zip}<br />{company.address}
+      </p>
+    </div>
+    <nav class="foot__nav" aria-label="フッターメニュー">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      <a href="/contact/">お問い合わせ</a>
+      <a href="/privacy/">プライバシーポリシー</a>
+    </nav>
+  </div>
+  <p class="wrap foot__copy">© Digital Communication Design Inc.</p>
+</footer>

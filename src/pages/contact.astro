@@ -1,0 +1,52 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import { company } from "../data/site";
+---
+
+<Base title="お問い合わせ" description="デコデへのお問い合わせ。">
+  <PageHero en="Contact" title="お問い合わせ" lead="記事、SNS、キャンペーン、AIの活用まで。課題が決まっていなくても大丈夫です。" />
+  <section class="sec">
+    <div class="wrap split">
+      <div class="contact-side fade-up">
+        <strong>メールでのご連絡</strong>
+        <a href={`mailto:${company.email}`}>{company.email}</a>
+        <strong style="margin-top: 16px">所在地</strong>
+        <p>{company.zip}<br />{company.address}</p>
+      </div>
+      <!-- 送信先は未定。いまは「メールを作成」で info@ 宛てに開くだけ（サーバーへは送らない） -->
+      <form class="form fade-up" id="contact-form" data-to={company.email} novalidate>
+        <label>お名前<span class="req">必須</span>
+          <input type="text" name="name" autocomplete="name" required />
+        </label>
+        <label>会社名
+          <input type="text" name="company" autocomplete="organization" />
+        </label>
+        <label>メールアドレス<span class="req">必須</span>
+          <input type="email" name="email" autocomplete="email" required />
+        </label>
+        <label>お問い合わせ内容<span class="req">必須</span>
+          <textarea name="message" required></textarea>
+        </label>
+        <p class="form__note">「プライバシーポリシー」をご確認のうえ、送信してください。</p>
+        <button class="btn btn--pill" type="submit">送信する</button>
+        <p class="form__note" id="form-msg" role="status"></p>
+      </form>
+    </div>
+  </section>
+  <script>
+    const f = document.getElementById("contact-form");
+    const msg = document.getElementById("form-msg");
+    f.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const d = new FormData(f);
+      if (!d.get("name") || !d.get("email") || !d.get("message")) {
+        msg.textContent = "必須の項目を入力してください。";
+        return;
+      }
+      const body = `お名前：${d.get("name")}\n会社名：${d.get("company") || ""}\nメール：${d.get("email")}\n\n${d.get("message")}`;
+      window.location.href = `mailto:${f.dataset.to}?subject=${encodeURIComponent("お問い合わせ")}&body=${encodeURIComponent(body)}`;
+      msg.textContent = "メールソフトが開きます。開かない場合は info@dcd.co.jp へ直接ご連絡ください。";
+    });
+  </script>
+</Base>
