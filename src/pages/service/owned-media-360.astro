@@ -1,0 +1,150 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+import LeadForm from "../../components/LeadForm.astro";
+
+// ※ 文章は 03-サービスの資料.md の下書きから起こした初稿。古屋さんの言葉に直していく。
+const worries = [
+  { t: "PVが伸びない", b: "記事を出しているのに読まれない。検索で見つけてもらえず、アクセスが増えない。" },
+  { t: "何を書けばいいか分からない", b: "キーワードも方針も決まらないまま、記事づくりが止まってしまう。" },
+  { t: "問い合わせにつながらない", b: "読まれても、見込み客との接点にならず、相談や資料請求まで届かない。" },
+];
+const steps = [
+  { n: "01", t: "キーワード選定", b: "見込み客が検索する言葉を選び、何を書くかを決めます。" },
+  { n: "02", t: "コンテンツ作成・投稿", b: "決めたキーワードで記事などをつくり、公開します。" },
+  { n: "03", t: "効果検証", b: "読まれ方を確かめ、次のキーワードと内容に生かします。" },
+];
+const hybrid = [
+  { who: "人（コンサルタント）", what: "ビジネスの目標、ターゲット、キーワードの方針を決める" },
+  { who: "SEOツール", what: "検索上位の記事の見出しやよく出る言葉から、構成を整える" },
+  { who: "AI", what: "記事・画像の下書きを短時間でつくる" },
+  { who: "人", what: "監修・修正をして、公開する" },
+];
+const spokes = [
+  { t: "SEO記事", s: "自社サイトの土台", x: 360, y: 62 },
+  { t: "note", s: "強い場所に支店を持つ", x: 552, y: 202 },
+  { t: "映像コンテンツ", s: "顔出しなしで解説動画に", x: 480, y: 398 },
+  { t: "SNSコンテンツ", s: "縦型動画で広げる", x: 240, y: 398 },
+  { t: "オンライン取材記事", s: "専門家の話を記事に", x: 168, y: 202 },
+];
+---
+
+<Base
+  title="AIオウンドメディア360"
+  description="1つのキーワードから、記事・note・映像・SNS・取材記事へ広げる。人の戦略とAIの制作力で、読まれるオウンドメディアをつくるサービスです。"
+>
+  <PageHero
+    en="Service / Owned Media"
+    title="AIオウンドメディア360"
+    lead="PVが伸びない。その悩みを、キーワードから広げる仕組みで解決します。"
+  />
+
+  <section class="sec">
+    <div class="wrap">
+      <p class="label sec__label fade-up">Worries</p>
+      <h2 class="lead-h fade-up">オウンドメディアで、つまずきやすい3つの場所。</h2>
+      <p class="om-sub fade-up">これから始める会社も、すでに運用している会社も、同じところで止まりがちです。</p>
+      <ul class="om-cards">
+        {worries.map((w, i) => (
+          <li class="om-card fade-up" style={`--d:${i * 0.08}s`}>
+            <h3>{w.t}</h3>
+            <p>{w.b}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec--soft">
+    <div class="wrap">
+      <p class="label sec__label fade-up">Idea</p>
+      <h2 class="lead-h fade-up">記事を載せるだけでは、成果は出ません。</h2>
+      <p class="om-sub fade-up">
+        広告費が高くなるなか、積み上がる「資産になる集客」へ移る会社が増えています。オウンドメディアはそのための場所です。
+        ただ、何のためのメディアかという戦略、キーワード選び、制作、効果の確かめ。この組み合わせがあって、はじめて成果が見えてきます。
+      </p>
+      <ol class="om-steps">
+        {steps.map((s, i) => (
+          <li class="om-step fade-up" style={`--d:${i * 0.08}s`}>
+            <span class="om-step__n">{s.n}</span>
+            <h3>{s.t}</h3>
+            <p>{s.b}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <p class="label sec__label fade-up">Hybrid</p>
+      <h2 class="lead-h fade-up">人の戦略と、AIの制作力。</h2>
+      <p class="om-sub fade-up">品質を保ちながら、制作のコストを抑えます。最後は必ず人が見て、公開します。</p>
+      <ol class="om-flow">
+        {hybrid.map((h, i) => (
+          <li class="om-flow__item fade-up" style={`--d:${i * 0.08}s`}>
+            <strong>{h.who}</strong>
+            <span>{h.what}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec sec--soft">
+    <div class="wrap">
+      <p class="label sec__label fade-up">360</p>
+      <h2 class="lead-h fade-up">1つのキーワードを、5つの形に広げる。</h2>
+      <p class="om-sub fade-up">
+        同じキーワードを、検索やSNSのあちこちで見つけてもらえる形に展開します。多くの制作物は、スプレッドシートで一覧にして進行を管理します。
+      </p>
+
+      <figure class="om-360 fade-up">
+        <svg class="om-360__svg" viewBox="0 0 720 470" role="img" aria-label="1つのキーワードから、SEO記事・note・映像コンテンツ・SNSコンテンツ・オンライン取材記事の5つに広げる図">
+          {spokes.map((p) => (
+            <line x1="360" y1="236" x2={p.x} y2={p.y} class="om-360__line" />
+          ))}
+          <circle cx="360" cy="236" r="74" class="om-360__core" />
+          <text x="360" y="230" text-anchor="middle" class="om-360__core-t">1つの</text>
+          <text x="360" y="254" text-anchor="middle" class="om-360__core-t">キーワード</text>
+          {spokes.map((p) => (
+            <g>
+              <rect x={p.x - 92} y={p.y - 34} width="184" height="68" rx="8" class="om-360__node" />
+              <text x={p.x} y={p.y - 3} text-anchor="middle" class="om-360__t">{p.t}</text>
+              <text x={p.x} y={p.y + 19} text-anchor="middle" class="om-360__s">{p.s}</text>
+            </g>
+          ))}
+        </svg>
+        <ol class="om-360__list">
+          {spokes.map((p) => (
+            <li><strong>{p.t}</strong><span>{p.s}</span></li>
+          ))}
+        </ol>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="document">
+    <div class="wrap om-doc">
+      <div class="fade-up">
+        <p class="label sec__label">Document</p>
+        <h2 class="lead-h">詳しい資料を、お送りします。</h2>
+        <p class="om-sub">
+          進め方や、制作物の一覧の管理の仕方まで、まとめた資料があります。お名前・会社名・メールアドレスをご入力ください。
+        </p>
+      </div>
+      <div class="fade-up">
+        <LeadForm source="owned-media-360" />
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--soft">
+    <div class="wrap">
+      <div class="notice fade-up">
+        <p>まず話を聞いてみたい、という方へ。</p>
+        <p>課題が決まっていなくても大丈夫です。<a href="/contact/">お問い合わせ</a>からご連絡ください。</p>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,99 @@
+---
+// 資料の申し込みフォーム（名前・会社名・メールアドレス）。送り先と渡し方は src/data/forms.ts
+import { formConfig } from "../data/forms";
+const { source = "document", title = "資料のお申し込み", button = "資料を申し込む" } = Astro.props;
+const isDownload = formConfig.documentDelivery === "download" && !!formConfig.downloadUrl;
+---
+
+<div
+  class="lead"
+  data-lead
+  data-endpoint={formConfig.endpoint}
+  data-delivery={isDownload ? "download" : "email"}
+  data-download={formConfig.downloadUrl}
+>
+  <form class="form lead__form" novalidate>
+    <h3 class="lead__title">{title}</h3>
+    <input type="hidden" name="type" value="document" />
+    <input type="hidden" name="source" value={source} />
+    <label class="lead__hp" aria-hidden="true">
+      ウェブサイト（入力しないでください）
+      <input type="text" name="website" tabindex="-1" autocomplete="off" />
+    </label>
+    <label>お名前<span class="req">必須</span>
+      <input type="text" name="name" autocomplete="name" required />
+    </label>
+    <label>会社名<span class="req">必須</span>
+      <input type="text" name="company" autocomplete="organization" required />
+    </label>
+    <label>メールアドレス<span class="req">必須</span>
+      <input type="email" name="email" autocomplete="email" required />
+    </label>
+    <p class="form__note">
+      <a href="/privacy/">プライバシーポリシー</a>をご確認のうえ、送信してください。
+    </p>
+    <button class="btn btn--pill" type="submit">{button}</button>
+    <p class="form__note lead__err" role="alert" data-err></p>
+  </form>
+
+  <div class="lead__done" data-done hidden tabindex="-1">
+    <p class="lead__done-title">お申し込みありがとうございます。</p>
+    <p data-done-email>ご入力のメールアドレスへ、資料をお送りします。しばらくお待ちください。</p>
+    <p data-done-download hidden>
+      <a class="btn btn--pill" href={formConfig.downloadUrl} download>資料をダウンロードする</a>
+    </p>
+    <p class="lead__draft" data-draft hidden>
+      ※ 準備中のため、まだ送信されていません（送り先が決まると送信されます）。
+    </p>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-lead]").forEach((box) => {
+    const form = box.querySelector("form")!;
+    const err = box.querySelector<HTMLElement>("[data-err]")!;
+    const done = box.querySelector<HTMLElement>("[data-done]")!;
+    const endpoint = box.dataset.endpoint || "";
+    const isDownload = box.dataset.delivery === "download";
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      err.textContent = "";
+      const d = new FormData(form);
+      if (d.get("website")) return; // 迷惑投稿よけ
+      const name = String(d.get("name") || "").trim();
+      const company = String(d.get("company") || "").trim();
+      const email = String(d.get("email") || "").trim();
+      if (!name || !company || !email) {
+        err.textContent = "必須の項目を入力してください。";
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        err.textContent = "メールアドレスの形式をご確認ください。";
+        return;
+      }
+      const btn = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
+      btn.disabled = true;
+      try {
+        if (endpoint) {
+          const res = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ type: d.get("type"), source: d.get("source"), name, company, email }),
+          });
+          if (!res.ok) throw new Error(String(res.status));
+        } else {
+          box.querySelector<HTMLElement>("[data-draft]")!.hidden = false;
+        }
+        form.hidden = true;
+        box.querySelector<HTMLElement>("[data-done-email]")!.hidden = isDownload;
+        box.querySelector<HTMLElement>("[data-done-download]")!.hidden = !isDownload;
+        done.hidden = false;
+        done.focus();
+      } catch {
+        err.textContent = "送信できませんでした。時間をおいて、もう一度お試しください。";
+        btn.disabled = false;
+      }
+    });
+  });
+</script>
