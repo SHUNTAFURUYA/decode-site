@@ -15,10 +15,10 @@ const current = (href: string) => path.startsWith(href);
   </a>
   <nav class="head__nav" aria-label="メニュー">
     {nav.map((n) => (
-      <a href={n.href} aria-current={current(n.href) ? "page" : undefined}>{n.label}</a>
+      <a href={n.href} aria-current={current(n.href) ? "page" : undefined}><span class="head__en">{n.en}</span><span class="head__ja">{n.label}</span></a>
     ))}
+    <a href="/contact/" aria-current={current("/contact/") ? "page" : undefined}><span class="head__en">Contact</span><span class="head__ja">お問い合わせ</span></a>
   </nav>
-  <a class="btn btn--pill head__cta" href="/contact/">お問い合わせ</a>
   <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false" aria-controls="drawer">
     <span></span><span></span>
   </button>

@@ -1,116 +1,142 @@
 ---
+// B案：レバレジーズ（https://leverages.jp/）の構成に寄せたトップ。
+// 並び：最初の画面（メイン画像）→ AIオウンドメディア360のバナー（横いっぱい）→ 私たちについて → 事業について → 事例 → 会社概要 → 採用 → お問い合わせ
 import Base from "../layouts/Base.astro";
 import { services, cases, company, featured } from "../data/site";
-const topServices = services;
 ---
 
 <Base>
-  <!-- 1. 最初の画面 -->
-  <section class="hero" aria-label="デコデ">
-    <div class="hero__text">
-      <h1 class="hero__title fade-up">本質を捉え、<br />アイディアで<br />解決する。</h1>
-      <p class="hero__en fade-up" style="--d: 0.12s">Digital Communication Design</p>
+  <!-- 1. メイン画像 -->
+  <section class="bhero" aria-label="デコデ">
+    <img class="bhero__img" src="/img/hero.jpg" alt="" />
+    <div class="bhero__text">
+      <p class="bhero__ja fade-up">本質を捉え、アイディアで解決する。</p>
+      <h1 class="bhero__en fade-up" style="--d: 0.1s">Digital Communication Design</h1>
     </div>
-    <div class="hero__art" aria-hidden="true">
-      <div class="plane plane--a" data-par="-0.10"></div>
-      <div class="plane plane--b" data-par="0.06"></div>
-      <div class="hero__photo" data-par="-0.04">
-        <img src="/img/hero.jpg" alt="" />
+  </section>
+
+  <!-- 2. AIオウンドメディア360のバナー（横いっぱい） -->
+  <section class="bbanner" aria-label="AIオウンドメディア360">
+    <div class="bbanner__in">
+      <div class="bbanner__body">
+        <p class="bbanner__tag fade-up">NEW SERVICE</p>
+        <h2 class="bbanner__title fade-up" style="--d: 0.06s">AIオウンドメディア360</h2>
+        <p class="bbanner__lead fade-up" style="--d: 0.12s">
+          1つのキーワードから、記事・note・映像・SNSまで。<br />PVが伸びない悩みを、広げる仕組みで変えていく。
+        </p>
+        <div class="bbanner__btns fade-up" style="--d: 0.18s">
+          <a class="bbtn bbtn--white" href="/service/owned-media-360/">サービスを見る<span aria-hidden="true">›</span></a>
+          <a class="bbtn bbtn--line" href="/service/owned-media-360/#document">資料を申し込む<span aria-hidden="true">›</span></a>
+        </div>
       </div>
-      <div class="plane plane--c" data-par="0.12"></div>
-    </div>
-    <a class="hero__scroll" href="#about" aria-label="下へ">Scroll</a>
-  </section>
-
-  <!-- 2. デコデの想い -->
-  <section class="statement" id="about">
-    <div class="wrap statement__in">
-      <p class="label fade-up">Philosophy</p>
-      <p class="statement__lead fade-up">
-        インターネットの登場によりコミュニケーションが複雑化しています。<br />本質を捉え、アイディアで解決していきます。
-      </p>
-      <p class="about__sub fade-up">
-        インターネットの時代が到来して、私たちのコミュニケーションの方法は一変しました。情報は瞬時に世界中を駆け巡り、人々のつながり方、考え方、そしてビジネスの進め方までが劇的に変化しています。私たち広告会社としてのフィロソフィーは、その複雑さの中でも本質を見極めること。そして、独自のアイディアでその本質を伝え、問題を解決することにあります。
-      </p>
-      <a class="arrow-link fade-up" href="/philosophy/"><span class="arrow-link__c">→</span>私たちについて</a>
+      <div class="bbanner__art fade-up" style="--d: 0.1s" aria-hidden="true">
+        <span class="bbanner__core">KEYWORD</span>
+        <span class="bbanner__chip bbanner__chip--1">SEO記事</span>
+        <span class="bbanner__chip bbanner__chip--2">note</span>
+        <span class="bbanner__chip bbanner__chip--3">映像</span>
+        <span class="bbanner__chip bbanner__chip--4">SNS</span>
+        <span class="bbanner__chip bbanner__chip--5">取材記事</span>
+      </div>
     </div>
   </section>
 
-  <!-- 3. 事業内容 -->
-  <section class="service" id="service">
-    <div class="wrap">
-      <p class="label fade-up">Service</p>
-      <h2 class="h2 fade-up">事業内容</h2>
-      <ul class="feat">
-        {featured.map((f, i) => (
-          <li class="fade-up" style={`--d:${i * 0.08}s`}>
-            <a class="feat__card" href={f.href}>
-              <span class="feat__tag">{f.tag}</span>
-              <h3>{f.title}</h3>
-              <p>{f.lead}</p>
-              <span class="feat__more">詳しく見る →</span>
+  <!-- 3. 私たちについて・事業について -->
+  <section class="btiles" id="about">
+    <a class="btile btile--wide fade-up" href="/philosophy/">
+      <span class="btile__wm" aria-hidden="true">PHILOSOPHY</span>
+      <span class="btile__label">私たちについて</span>
+      <span class="btile__title">本質を捉え、<br class="sp" />アイディアで解決していきます。</span>
+      <span class="btile__btn">PHILOSOPHY PAGE<span aria-hidden="true">›</span></span>
+    </a>
+    <div class="btiles__row">
+      <a class="btile fade-up" href="/service/">
+        <span class="btile__wm" aria-hidden="true">BUSINESS</span>
+        <span class="btile__label">事業について</span>
+        <span class="btile__title">コンテンツから、<br />観光・飲食まで。</span>
+        <span class="btile__btn">SERVICE PAGE<span aria-hidden="true">›</span></span>
+      </a>
+      <a class="btile fade-up" style="--d: 0.08s" href={featured[1].href}>
+        <span class="btile__wm" aria-hidden="true">AI360</span>
+        <span class="btile__label">AI360</span>
+        <span class="btile__title">記事を、動画・SNS・<br />noteへ広げる。</span>
+        <span class="btile__btn">AI360 PAGE<span aria-hidden="true">›</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 4. 事業内容 -->
+  <section class="bsec" id="service">
+    <div class="bwrap">
+      <header class="bhead fade-up">
+        <p class="bhead__en">SERVICE</p>
+        <h2 class="bhead__ja">事業内容</h2>
+      </header>
+      <ul class="bsvc">
+        {services.map((s, i) => (
+          <li class="fade-up" style={`--d: ${(i % 3) * 0.06}s`}>
+            <a href="/service/">
+              <span class="bsvc__no">{s.no}</span>
+              <span class="bsvc__title">{s.title}</span>
+              <span class="bsvc__lead">{s.body.split("。")[0]}。</span>
             </a>
           </li>
         ))}
       </ul>
-      <p class="feat__sub fade-up">そのほかの事業</p>
-      <ul class="svc">
-        {topServices.map((s, i) => (
-          <li class="svc__item fade-up" style={`--d: ${(i % 2) * 0.08}s`}>
-            <span class="svc__no">{s.no}</span>
-            <h3>{s.title}</h3>
-            <p>{s.body.split("。")[0]}。</p>
-          </li>
-        ))}
-      </ul>
-      <a class="arrow-link fade-up" href="/service/" style="margin-top: 40px"><span class="arrow-link__c">→</span>事業内容をすべて見る</a>
+      <p class="bmore fade-up"><a class="bbtn bbtn--dark" href="/service/">SERVICE ALL<span aria-hidden="true">›</span></a></p>
     </div>
   </section>
 
-  <!-- 4. 事例・コラム -->
-  <section class="case" id="case">
-    <div class="wrap">
-      <div class="case__head">
-        <div>
-          <p class="label fade-up">Case Study</p>
-          <h2 class="h2 fade-up">事例・コラム</h2>
-        </div>
-        <a class="arrow-link fade-up" href="/case/"><span class="arrow-link__c">→</span>事例をすべて見る</a>
-      </div>
-      <ul class="cases">
+  <!-- 5. 事例・コラム -->
+  <section class="bsec bsec--soft" id="case">
+    <div class="bwrap">
+      <header class="bhead fade-up">
+        <p class="bhead__en">CASE STUDY</p>
+        <h2 class="bhead__ja">事例・コラム</h2>
+      </header>
+      <ul class="bcases">
         {cases.map((c, i) => (
           <li class="fade-up" style={`--d: ${i * 0.08}s`}>
-            <a class="card" href={`/case/${c.slug}/`}>
-              <div class={`card__img card__img--${c.tone}`}><span>写真（仮）</span></div>
-              <p class="card__tag">{c.tags[0]}</p>
-              <h3>{c.title}</h3>
+            <a class="bcase" href={`/case/${c.slug}/`}>
+              <span class={`bcase__img bcase__img--${c.tone}`}><span>写真（仮）</span></span>
+              <span class="bcase__meta"><b>PICKUP</b>{c.date}</span>
+              <span class="bcase__title">{c.title}</span>
+              <span class="bcase__tags">{c.tags.map((t) => <i>{t}</i>)}</span>
             </a>
           </li>
         ))}
       </ul>
+      <p class="bmore fade-up"><a class="bbtn bbtn--dark" href="/case/">CASE ALL<span aria-hidden="true">›</span></a></p>
     </div>
   </section>
 
-  <!-- 5. 会社概要 -->
-  <section class="company" id="company">
-    <div class="wrap company__in">
-      <div>
-        <p class="label fade-up">Company</p>
-        <h2 class="h2 fade-up">会社概要</h2>
-      </div>
-      <div>
-        <dl class="table fade-up">
+  <!-- 6. 会社概要・採用 -->
+  <section class="bsec" id="company">
+    <div class="bwrap bcols">
+      <div class="fade-up">
+        <header class="bhead">
+          <p class="bhead__en">COMPANY</p>
+          <h2 class="bhead__ja">会社概要</h2>
+        </header>
+        <dl class="btable">
           <div><dt>商号</dt><dd>{company.nameJa}</dd></div>
           <div><dt>代表者</dt><dd>{company.rep}</dd></div>
           <div><dt>設立</dt><dd>{company.founded}</dd></div>
           <div><dt>所在地</dt><dd>{company.zip} {company.address}</dd></div>
         </dl>
-        <a class="arrow-link fade-up" href="/company/" style="margin-top: 32px"><span class="arrow-link__c">→</span>会社概要を見る</a>
+        <p class="bmore bmore--left"><a class="bbtn bbtn--dark" href="/company/">COMPANY PAGE<span aria-hidden="true">›</span></a></p>
+      </div>
+      <div class="brecruit fade-up" style="--d: 0.08s">
+        <header class="bhead">
+          <p class="bhead__en">RECRUIT</p>
+          <h2 class="bhead__ja">採用について</h2>
+        </header>
+        <p>現在募集していません。<br />ご興味をお持ちの方は、お問い合わせからご連絡ください。</p>
+        <p class="bmore bmore--left"><a class="bbtn bbtn--dark" href="/recruit/">RECRUIT PAGE<span aria-hidden="true">›</span></a></p>
       </div>
     </div>
   </section>
 
-  <!-- 6. お問い合わせ -->
+  <!-- 7. お問い合わせ -->
   <section class="contact" id="contact">
     <div class="contact__plane" aria-hidden="true"></div>
     <div class="wrap contact__in">

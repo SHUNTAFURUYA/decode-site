@@ -1,0 +1,549 @@
+/* B案：レバレジーズ（https://leverages.jp/）の構成と余白に寄せる。
+   A案は git のタグ plan-A に保存してある。画像・ロゴ・文章は参考サイトから持ち込んでいない。 */
+
+:root {
+  --b-ink: #1f3134;
+  --b-line: #dfe7ea;
+  --head-h: 76px;
+}
+body {
+  color: var(--b-ink);
+}
+
+/* ---------- ヘッダー：白地・英字の大文字メニュー・上に小さな点 ---------- */
+.head,
+.head.is-solid {
+  background: #fff;
+  backdrop-filter: none;
+  box-shadow: 0 1px 0 var(--b-line);
+  gap: clamp(16px, 3vw, 40px);
+}
+.head__nav {
+  gap: clamp(16px, 2.6vw, 40px);
+  margin: 0 auto;
+}
+.head__nav a {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 10px 0 2px;
+  font-family: "Manrope", "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.head__nav a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--b-ink);
+}
+.head__ja {
+  display: none;
+}
+.head__nav a::after {
+  background: var(--blue);
+}
+.head__nav a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+.head__cta {
+  display: none;
+}
+
+/* ---------- 共通の部品 ---------- */
+.bwrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+.bsec {
+  padding: clamp(64px, 9vw, 120px) 0;
+}
+.bsec--soft {
+  background: #f4f8f9;
+}
+.bhead {
+  display: grid;
+  gap: 6px;
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+.bhead__en {
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  font-size: clamp(32px, 5vw, 56px);
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  color: var(--b-ink);
+}
+.bhead__ja {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--ink-sub);
+}
+.bbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-width: 220px;
+  height: 52px;
+  padding: 0 28px;
+  font-family: "Manrope", "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  border: 1px solid currentColor;
+  transition: background 0.25s, color 0.25s;
+}
+.bbtn span {
+  font-size: 20px;
+  line-height: 1;
+}
+.bbtn--dark {
+  color: var(--b-ink);
+}
+.bbtn--dark:hover {
+  background: var(--b-ink);
+  color: #fff;
+}
+.bbtn--white {
+  background: #fff;
+  color: var(--blue);
+  border-color: #fff;
+}
+.bbtn--white:hover {
+  background: transparent;
+  color: #fff;
+}
+.bbtn--line {
+  color: #fff;
+}
+.bbtn--line:hover {
+  background: #fff;
+  color: var(--blue);
+}
+.bmore {
+  margin-top: clamp(32px, 5vw, 56px);
+  text-align: center;
+}
+.bmore--left {
+  text-align: left;
+}
+
+/* ---------- 1. メイン画像 ---------- */
+.bhero {
+  position: relative;
+  margin: calc(var(--head-h) + 16px) 16px 0;
+  min-height: clamp(340px, 52vw, 560px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #e9eef1;
+}
+.bhero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 40%;
+}
+.bhero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.5) 55%, rgba(255, 255, 255, 0.1) 100%);
+}
+.bhero__text {
+  position: relative;
+  z-index: 1;
+  padding: 0 clamp(20px, 5vw, 64px);
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+  text-align: center;
+}
+.bhero__ja {
+  font-size: clamp(16px, 2.2vw, 24px);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+.bhero__en {
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  font-size: clamp(26px, 5.4vw, 64px);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: var(--b-ink);
+}
+
+/* ---------- 2. AIオウンドメディア360のバナー（横いっぱい） ---------- */
+.bbanner {
+  margin-top: 16px;
+  width: 100%;
+  background: linear-gradient(105deg, #0a4f87 0%, #0e6eb8 55%, #00a0e9 100%);
+  color: #fff;
+  overflow: hidden;
+}
+.bbanner__in {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 80px) clamp(20px, 5vw, 64px);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(24px, 4vw, 64px);
+  align-items: center;
+}
+.bbanner__tag {
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: #bfe6fb;
+}
+.bbanner__title {
+  margin-top: 10px;
+  font-size: clamp(26px, 3.6vw, 48px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+.bbanner__lead {
+  margin-top: 16px;
+  font-size: clamp(14px, 1.5vw, 17px);
+  line-height: 2;
+  color: #e6f4fc;
+}
+.bbanner__btns {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.bbanner__art {
+  position: relative;
+  min-height: 260px;
+}
+.bbanner__core,
+.bbanner__chip {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  font-family: "Manrope", "Noto Sans JP", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.bbanner__core {
+  left: 50%;
+  top: 50%;
+  width: 112px;
+  height: 112px;
+  margin: -56px 0 0 -56px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--blue);
+  font-size: 13px;
+  box-shadow: 0 0 0 14px rgba(255, 255, 255, 0.18);
+}
+.bbanner__chip {
+  padding: 9px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 13px;
+}
+.bbanner__chip--1 { left: 50%; top: 2%; transform: translateX(-50%); }
+.bbanner__chip--2 { right: 2%; top: 30%; }
+.bbanner__chip--3 { right: 14%; bottom: 4%; }
+.bbanner__chip--4 { left: 14%; bottom: 4%; }
+.bbanner__chip--5 { left: 2%; top: 30%; }
+
+/* ---------- 3. 私たちについて・事業について（大きな面） ---------- */
+.btiles {
+  margin-top: 16px;
+  display: grid;
+  gap: 16px;
+  padding: 0 16px;
+}
+.btiles__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.btile {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 14px;
+  min-height: clamp(300px, 34vw, 420px);
+  padding: 48px 24px;
+  text-align: center;
+  background: linear-gradient(135deg, #eaf4fb 0%, #d4e9f7 100%);
+  color: var(--b-ink);
+}
+.btile--wide {
+  min-height: clamp(320px, 38vw, 460px);
+  background: linear-gradient(120deg, #e3f0f9 0%, #cfe6f6 60%, #b9ddf3 100%);
+}
+.btiles__row .btile:nth-child(2) {
+  background: linear-gradient(135deg, #e6f6fd 0%, #c6e8f8 100%);
+}
+.btile__wm {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -62%);
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  font-size: clamp(56px, 11vw, 150px);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.78);
+  pointer-events: none;
+}
+.btiles__row .btile__wm {
+  font-size: clamp(40px, 7vw, 100px);
+}
+.btile > :not(.btile__wm) {
+  position: relative;
+}
+.btile__label {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+.btile__title {
+  font-size: clamp(18px, 2.4vw, 28px);
+  font-weight: 500;
+  line-height: 1.8;
+  letter-spacing: 0.18em;
+}
+.btile__btn {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  min-width: 230px;
+  justify-content: space-between;
+  padding: 0 22px;
+  height: 48px;
+  border: 1px solid var(--b-ink);
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  transition: background 0.25s, color 0.25s;
+}
+.btile__btn span {
+  font-size: 20px;
+  line-height: 1;
+}
+.btile:hover .btile__btn {
+  background: var(--b-ink);
+  color: #fff;
+}
+.sp {
+  display: none;
+}
+
+/* ---------- 4. 事業内容 ---------- */
+.bsvc {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--b-line);
+}
+.bsvc li {
+  border-bottom: 1px solid var(--b-line);
+  border-right: 1px solid var(--b-line);
+}
+.bsvc li:nth-child(3n) {
+  border-right: 0;
+}
+.bsvc a {
+  display: grid;
+  gap: 10px;
+  height: 100%;
+  padding: clamp(24px, 3vw, 40px) clamp(16px, 2.4vw, 32px);
+  transition: background 0.25s;
+}
+.bsvc a:hover {
+  background: #f4f8f9;
+}
+.bsvc__no {
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--sky);
+}
+.bsvc__title {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+.bsvc__lead {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--ink-sub);
+}
+
+/* ---------- 5. 事例・コラム ---------- */
+.bcases {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.bcase {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  height: 100%;
+}
+.bcase__img {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  background: #cfe3f1;
+  color: #6c8fa8;
+  font-size: 12px;
+}
+.bcase__img--2 { background: #d6e9ef; }
+.bcase__img--3 { background: #dbe4f3; }
+.bcase__meta {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  font-size: 12px;
+  color: var(--ink-sub);
+}
+.bcase__meta b {
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--blue);
+}
+.bcase__title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.7;
+}
+.bcase:hover .bcase__title {
+  color: var(--blue);
+}
+.bcase__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.bcase__tags i {
+  font-style: normal;
+  font-size: 11px;
+  padding: 3px 10px;
+  border: 1px solid var(--b-line);
+  background: #fff;
+}
+
+/* ---------- 6. 会社概要・採用 ---------- */
+.bcols {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(32px, 6vw, 96px);
+}
+.btable {
+  margin: 0;
+  display: grid;
+  border-top: 1px solid var(--b-line);
+}
+.btable div {
+  display: grid;
+  grid-template-columns: 6em 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--b-line);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.btable dt {
+  font-weight: 700;
+}
+.btable dd {
+  margin: 0;
+  min-width: 0;
+}
+.brecruit p:not(.bmore) {
+  font-size: 14px;
+  line-height: 2;
+}
+
+/* ---------- フッター ---------- */
+.foot {
+  background: #fff;
+  border-top: 1px solid var(--b-line);
+}
+.foot__nav a {
+  font-family: "Manrope", "Noto Sans JP", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+/* ---------- スマホ ---------- */
+@media (max-width: 860px) {
+  .bbanner__in {
+    grid-template-columns: 1fr;
+  }
+  .bbanner__art {
+    min-height: 220px;
+  }
+  .btiles__row {
+    grid-template-columns: 1fr;
+  }
+  .bsvc {
+    grid-template-columns: 1fr;
+  }
+  .bsvc li {
+    border-right: 0;
+  }
+  .bcases {
+    grid-template-columns: 1fr;
+  }
+  .bcols {
+    grid-template-columns: 1fr;
+  }
+  .sp {
+    display: inline;
+  }
+}
+@media (max-width: 480px) {
+  .bhero {
+    margin: calc(var(--head-h) + 8px) 8px 0;
+  }
+  .btiles {
+    padding: 0 8px;
+  }
+  .btile__title {
+    letter-spacing: 0.1em;
+  }
+  .bbtn {
+    min-width: 0;
+    width: 100%;
+  }
+  .bbanner__btns {
+    display: grid;
+  }
+}
