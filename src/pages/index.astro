@@ -93,19 +93,46 @@ import { services, cases, company, featured } from "../data/site";
         <p class="bhead__en">CASE STUDY</p>
         <h2 class="bhead__ja">事例・コラム</h2>
       </header>
-      <ul class="bcases">
-        {cases.map((c, i) => (
-          <li class="fade-up" style={`--d: ${i * 0.08}s`}>
-            <a class="bcase" href={`/case/${c.slug}/`}>
-              <span class={`bcase__img bcase__img--${c.tone}`}><span>写真（仮）</span></span>
-              <span class="bcase__meta"><b>PICKUP</b>{c.date}</span>
-              <span class="bcase__title">{c.title}</span>
-              <span class="bcase__tags">{c.tags.map((t) => <i>{t}</i>)}</span>
+    </div>
+    <!-- 横に流れる事例（マウスを乗せると止まる） -->
+    <div class="bslide" aria-label="事例・コラム">
+      <ul class="bslide__track">
+        {[0, 1].map((loop) =>
+          cases.map((c) => (
+            <li aria-hidden={loop === 1 ? "true" : undefined}>
+              <a class="bcase" href={`/case/${c.slug}/`} tabindex={loop === 1 ? -1 : undefined}>
+                <span class={`bcase__img bcase__img--${c.tone}`}><span>写真（仮）</span></span>
+                <span class="bcase__meta"><b>PICKUP</b>{c.date}</span>
+                <span class="bcase__title">{c.title}</span>
+                <span class="bcase__tags">{c.tags.map((t) => <i>{t}</i>)}</span>
+              </a>
+            </li>
+          ))
+        )}
+      </ul>
+    </div>
+    <div class="bwrap">
+      <p class="bmore fade-up"><a class="bbtn bbtn--dark" href="/case/">CASE ALL<span aria-hidden="true">›</span></a></p>
+    </div>
+  </section>
+
+  <!-- 5-2. ニュース（いまは事例の公開日から。お知らせが決まったら差し替える） -->
+  <section class="bsec" id="news">
+    <div class="bwrap">
+      <header class="bhead bhead--inline fade-up">
+        <p class="bhead__en">NEWS</p>
+        <h2 class="bhead__ja">ニュース</h2>
+      </header>
+      <ul class="bnews">
+        {cases.map((c) => (
+          <li class="fade-up">
+            <a href={`/case/${c.slug}/`}>
+              <time>{c.date}</time>
+              <span>事例を公開しました：{c.title}</span>
             </a>
           </li>
         ))}
       </ul>
-      <p class="bmore fade-up"><a class="bbtn bbtn--dark" href="/case/">CASE ALL<span aria-hidden="true">›</span></a></p>
     </div>
   </section>
 
@@ -147,3 +174,15 @@ import { services, cases, company, featured } from "../data/site";
     </div>
   </section>
 </Base>
+
+<script>
+  // 英字の見出しを1文字ずつ、少しずらして出す（参考サイトの動きに寄せる。動きを減らす設定の人には出さない）
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll<HTMLElement>(".bhead__en").forEach((el) => {
+    if (reduce) return;
+    const text = el.textContent || "";
+    el.setAttribute("aria-label", text);
+    el.innerHTML = [...text].map((ch, i) => `<span aria-hidden="true" style="--i:${i}">${ch === " " ? "&nbsp;" : ch}</span>`).join("");
+    el.classList.add("is-split");
+  });
+</script>

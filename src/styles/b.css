@@ -547,3 +547,200 @@ body {
     display: grid;
   }
 }
+
+/* ---------- 追加：より近づけるための部品 ---------- */
+/* 画面右下の固定ボタン */
+.bfix {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 40;
+  display: grid;
+  gap: 8px;
+}
+.bfix a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-width: 200px;
+  height: 46px;
+  padding: 0 18px 0 24px;
+  background: var(--b-ink);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  transition: background 0.25s;
+}
+.bfix a:hover {
+  background: #34505a;
+}
+.bfix span {
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* 見出しの英字：1文字ずつ出る */
+.bhead--inline {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+}
+.bhead--inline .bhead__en {
+  font-size: clamp(26px, 3.4vw, 40px);
+}
+.bhead__en.is-split span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: calc(var(--i) * 0.045s);
+}
+.is-in .bhead__en.is-split span,
+.bhead.is-in .bhead__en.is-split span {
+  opacity: 1;
+  transform: none;
+}
+
+/* 横に流れる事例 */
+.bslide {
+  overflow: hidden;
+  margin-top: 8px;
+}
+.bslide__track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: bslide 48s linear infinite;
+}
+.bslide:hover .bslide__track,
+.bslide:focus-within .bslide__track {
+  animation-play-state: paused;
+}
+.bslide__track li {
+  width: clamp(260px, 28vw, 360px);
+  flex: none;
+}
+@keyframes bslide {
+  to { transform: translateX(calc(-50% - 12px)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bslide { overflow-x: auto; }
+  .bslide__track { animation: none; }
+}
+
+/* ニュース */
+.bnews {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--b-line);
+}
+.bnews li {
+  border-bottom: 1px solid var(--b-line);
+}
+.bnews a {
+  display: flex;
+  gap: 24px;
+  padding: 22px 8px;
+  font-size: 14px;
+  line-height: 1.8;
+  transition: background 0.25s;
+}
+.bnews a:hover {
+  background: #f4f8f9;
+}
+.bnews time {
+  flex: none;
+  min-width: 7.5em;
+  color: #8a9a9d;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- フッター：濃い色の面 ---------- */
+.foot {
+  background: var(--b-ink);
+  color: #fff;
+  border-top: 0;
+  padding: clamp(48px, 6vw, 80px) 0 110px;
+}
+.foot__in {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+.foot__brand img {
+  filter: brightness(0) invert(1);
+}
+.foot__addr {
+  color: #b9c6c8;
+}
+.foot__nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(160px, 1fr));
+  gap: 32px 64px;
+  max-width: none;
+}
+.foot__nav > div {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+.foot__nav a {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #fff;
+}
+.foot__nav a:hover {
+  color: #9fd4f5;
+}
+.foot__h {
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #8fa5a8;
+}
+.foot__sub {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+.foot__copy {
+  margin: 0;
+  color: #8fa5a8;
+}
+@media (max-width: 860px) {
+  .bfix {
+    right: 8px;
+    bottom: 8px;
+  }
+  .bfix a {
+    min-width: 0;
+    height: 42px;
+    gap: 12px;
+    padding: 0 12px 0 16px;
+    font-size: 12px;
+  }
+  .bnews a {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .bhead--inline {
+    flex-wrap: wrap;
+    gap: 4px 14px;
+  }
+}
