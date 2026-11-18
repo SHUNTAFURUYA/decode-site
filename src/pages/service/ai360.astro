@@ -1,0 +1,121 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+
+// ※ 初稿。名前「AI360」は仮。金額の「○○」は未定（古屋さん／大塚に確認して差し替える）。
+// 料金：金額を差し替えるときは、下の price だけ直す。
+const price = { from: "○○", to: "○○", unit: "万円" };
+
+const worries = [
+  { t: "読まれる場所が、自社サイトだけ", b: "せっかく書いた記事が、検索で見つけてもらえた人にしか届いていない。" },
+  { t: "動画やSNSまで、手が回らない", b: "広げたいと思っても、企画も制作も、人手が足りない。" },
+  { t: "同じ内容を、作り直す手間がかかる", b: "形ごとにゼロから作ると、時間も費用も、かさんでしまう。" },
+];
+const outs = [
+  { t: "動画", s: "解説動画・縦型の短い動画" },
+  { t: "SNS投稿", s: "X・Instagramなど" },
+  { t: "note", s: "強い場所に支店を持つ" },
+];
+const flow = [
+  { who: "記事を選ぶ", what: "広げたい自社の記事を決める" },
+  { who: "AIが下書き", what: "記事をもとに、動画・SNS・noteの下書きを短時間でつくる" },
+  { who: "人が確認・修正", what: "内容と表現を人が見て、整える" },
+  { who: "公開", what: "それぞれの場所へ公開する" },
+];
+---
+
+<Base
+  title="AI360"
+  description="いまある自社の記事を、AIで動画・SNS投稿・noteに広げる。つくり直す手間を減らし、記事の届く場所を増やすサービスです。"
+>
+  <PageHero
+    en="Service / AI360"
+    title="AI360"
+    lead="いまある記事を、動画・SNS・noteへ。記事の届く場所を、AIで広げます。"
+  />
+
+  <section class="sec">
+    <div class="wrap">
+      <p class="label sec__label fade-up">Worries</p>
+      <h2 class="lead-h fade-up">記事はある。でも、そこで止まっていませんか。</h2>
+      <p class="om-sub fade-up">ブログやオウンドメディアの記事をお持ちの会社に向けた、記事を広げるサービスです。</p>
+      <ul class="om-cards">
+        {worries.map((w, i) => (
+          <li class="om-card fade-up" style={`--d:${i * 0.08}s`}>
+            <h3>{w.t}</h3>
+            <p>{w.b}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec--soft">
+    <div class="wrap">
+      <p class="label sec__label fade-up">Expand</p>
+      <h2 class="lead-h fade-up">1つの記事を、3つの形に広げる。</h2>
+      <p class="om-sub fade-up">すでにある記事を土台にするので、ゼロから考えるより、速く、費用を抑えて広げられます。</p>
+      <div class="ai-map fade-up">
+        <div class="ai-map__src">
+          <strong>自社の記事</strong>
+          <span>ブログ・オウンドメディア</span>
+        </div>
+        <div class="ai-map__arrow" aria-hidden="true"></div>
+        <ul class="ai-map__outs">
+          {outs.map((o) => (
+            <li><strong>{o.t}</strong><span>{o.s}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <p class="label sec__label fade-up">Flow</p>
+      <h2 class="lead-h fade-up">AIの速さと、人の目。</h2>
+      <p class="om-sub fade-up">下書きはAIが短時間でつくります。公開の前に、必ず人が確認します。</p>
+      <ol class="om-flow">
+        {flow.map((h, i) => (
+          <li class="om-flow__item fade-up" style={`--d:${i * 0.08}s`}>
+            <strong>{h.who}</strong>
+            <span>{h.what}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec sec--soft" id="price">
+    <div class="wrap">
+      <p class="label sec__label fade-up">Price</p>
+      <h2 class="lead-h fade-up">料金の目安</h2>
+      <div class="ai-price fade-up">
+        <p class="ai-price__lead">規模によります。目安は</p>
+        <p class="ai-price__num">{price.from}<span>〜</span>{price.to}<small>{price.unit}</small></p>
+        <p class="ai-price__note">
+          記事の本数や、広げる形によって変わります。まずはご相談ください。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <p class="label sec__label fade-up">Related</p>
+      <h2 class="lead-h fade-up">記事を新しくつくるところから、任せたい方へ。</h2>
+      <p class="om-sub fade-up">
+        1つのキーワードから、記事・note・映像・SNSまで広げる「<a class="ai-link" href="/service/owned-media-360/">AIオウンドメディア360</a>」もあります。
+      </p>
+    </div>
+  </section>
+
+  <section class="sec sec--soft">
+    <div class="wrap">
+      <div class="notice fade-up">
+        <p>お手持ちの記事で、何ができるか知りたい方へ。</p>
+        <p>課題が決まっていなくても大丈夫です。<a href="/contact/">お問い合わせ</a>からご連絡ください。</p>
+      </div>
+    </div>
+  </section>
+</Base>
